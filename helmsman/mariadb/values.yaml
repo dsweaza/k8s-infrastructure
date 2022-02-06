@@ -1,0 +1,3 @@
+fullnameOverride: mariadb-galera-01
+persistence:
+  storageClass: k8s-storage

@@ -1,0 +1,32 @@
+# version: v3.4.0
+
+# context defines the context of this Desired State File.
+# It is used to allow Helmsman identify which releases are managed by which DSF.
+# Therefore, it is important that each DSF uses a unique context.
+context: k8s.dylanlab.xyz # defaults to "default" if not provided
+
+# metadata -- add as many key/value pairs as you want
+metadata:
+  org: "dylanlab.xyz"
+  maintainer: "Dylan"
+  description: "DSF for lab / development k8s"
+
+# define your environments and their k8s namespaces
+namespaces:
+  database:
+    
+
+helmRepos:
+  bitnami: "https://charts.bitnami.com/bitnami"
+
+
+# define the desired state of your applications helm charts
+# each contains the following:
+
+apps:
+  mariadb:
+    namespace: database
+    enabled: true 
+    chart: bitnami/mariadb-galera
+    version: 6.2.2 # chart version
+    valuesFile: mariadb/values.yaml
