@@ -1,3 +1,24 @@
+global:
+  storageClass: nfs-client
+
+clusterDomain: k8s.dylanlab.xyz
 fullnameOverride: mariadb-galera-01
-persistence:
-  storageClass: k8s-storage
+replicaCount: 3
+
+rootUser:
+  user: root
+  password: M39bEfD6
+
+image:
+    debug: true
+
+readinessProbe:
+  enabled: true
+  initialDelaySeconds: 210
+
+livenessProbe:
+  enabled: true
+  initialDelaySeconds: 240
+
+metrics:
+  enabled: true

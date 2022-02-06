@@ -1,32 +1,39 @@
-# version: v3.4.0
-
-# context defines the context of this Desired State File.
-# It is used to allow Helmsman identify which releases are managed by which DSF.
-# Therefore, it is important that each DSF uses a unique context.
 context: k8s.dylanlab.xyz # defaults to "default" if not provided
 
-# metadata -- add as many key/value pairs as you want
 metadata:
   org: "dylanlab.xyz"
   maintainer: "Dylan"
   description: "DSF for lab / development k8s"
 
-# define your environments and their k8s namespaces
 namespaces:
+  default:
+  storage:
   database:
     
-
 helmRepos:
+  nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
   bitnami: "https://charts.bitnami.com/bitnami"
-
-
-# define the desired state of your applications helm charts
-# each contains the following:
+  gitlab: "https://charts.gitlab.io"
 
 apps:
-  mariadb:
-    namespace: database
+  nfs-external-provisioner:
+    namespace: storage
     enabled: true 
+    chart: nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
+    version: 4.0.15 
+    valuesFile: nfs-external-provisioner/values.yaml
+  
+  gitlab-runner:
+    namespace: default
+    enabled: true 
+    chart: gitlab/gitlab-runner
+    version: 0.37.2 
+    valuesFile: gitlab-runner/values.yaml
+
+  mariadb:
+    #https://github.com/bitnami/charts/tree/master/bitnami/mariadb-galera/
+    namespace: database
+    enabled: true
     chart: bitnami/mariadb-galera
-    version: 6.2.2 # chart version
+    version: 6.0.8
     valuesFile: mariadb/values.yaml
