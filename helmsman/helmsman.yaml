@@ -9,9 +9,11 @@ namespaces:
   default:
   storage:
   database:
+  monitoring:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
+  prometheus-community: "https://prometheus-community.github.io/helm-charts"
   bitnami: "https://charts.bitnami.com/bitnami"
   gitlab: "https://charts.gitlab.io"
 
@@ -22,6 +24,12 @@ apps:
     chart: nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
     version: 4.0.15 
     valuesFile: nfs-external-provisioner/values.yaml
+
+  prometheus:
+    namespace: monitoring
+    enabled: true
+    chart: prometheus-community/kube-prometheus-stack
+    version: 31.0.0
   
   gitlab-runner:
     #https://docs.gitlab.com/runner/install/kubernetes.html
