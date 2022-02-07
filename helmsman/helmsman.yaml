@@ -10,12 +10,14 @@ namespaces:
   storage:
   database:
   monitoring:
+  metallb:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
   prometheus-community: "https://prometheus-community.github.io/helm-charts"
   bitnami: "https://charts.bitnami.com/bitnami"
   gitlab: "https://charts.gitlab.io"
+  metallb: "https://metallb.github.io/metallb"
 
 apps:
   nfs-external-provisioner:
@@ -30,6 +32,13 @@ apps:
     enabled: true
     chart: prometheus-community/kube-prometheus-stack
     version: 31.0.0
+
+  metallb:
+    namespace: metallb
+    enabled: true
+    chart: metallb/metallb
+    version: 0.11.0
+    valuesFile: metallb/values.yaml
   
   gitlab-runner:
     #https://docs.gitlab.com/runner/install/kubernetes.html
