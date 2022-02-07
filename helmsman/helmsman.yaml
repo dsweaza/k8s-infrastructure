@@ -24,11 +24,14 @@ apps:
     valuesFile: nfs-external-provisioner/values.yaml
   
   gitlab-runner:
+    #https://docs.gitlab.com/runner/install/kubernetes.html
     namespace: default
     enabled: true 
     chart: gitlab/gitlab-runner
     version: 0.37.2 
     valuesFile: gitlab-runner/values.yaml
+    set:
+      runnerRegistrationToken: $HELMCHART_GITLAB_RUNNERTOKEN
 
   mariadb:
     #https://github.com/bitnami/charts/tree/master/bitnami/mariadb-galera/
@@ -37,3 +40,5 @@ apps:
     chart: bitnami/mariadb-galera
     version: 6.0.8
     valuesFile: mariadb/values.yaml
+    set:
+      rootUser.password: $HELMCHART_MARIADB_PASSWORD

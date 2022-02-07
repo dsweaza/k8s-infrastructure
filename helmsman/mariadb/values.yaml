@@ -5,20 +5,8 @@ clusterDomain: k8s.dylanlab.xyz
 fullnameOverride: mariadb-galera-01
 replicaCount: 3
 
-rootUser:
-  user: root
-  password: M39bEfD6
-
-image:
-    debug: true
-
-readinessProbe:
+startupProbe:
   enabled: true
-  initialDelaySeconds: 210
-
-livenessProbe:
-  enabled: true
-  initialDelaySeconds: 240
-
+  
 metrics:
   enabled: true
