@@ -11,6 +11,7 @@ namespaces:
   database:
   monitoring:
   metallb:
+  ingress-controller:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
@@ -18,6 +19,7 @@ helmRepos:
   bitnami: "https://charts.bitnami.com/bitnami"
   gitlab: "https://charts.gitlab.io"
   metallb: "https://metallb.github.io/metallb"
+  nginx-stable: "https://helm.nginx.com/stable"
 
 apps:
   nfs-external-provisioner:
@@ -59,3 +61,10 @@ apps:
     valuesFile: mariadb/values.yaml
     set:
       rootUser.password: $HELMCHART_MARIADB_PASSWORD
+
+  nginx-ingress-controller:
+    namespace: ingress-controller
+    enabled: true
+    chart: nginx-stable/nginx-ingress
+    version: 0.12.0
+    
