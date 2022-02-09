@@ -12,9 +12,11 @@ namespaces:
   monitoring:
   metallb:
   ingress-controller:
+  kube-system:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
+  metrics-server: "https://kubernetes-sigs.github.io/metrics-server/"
   prometheus-community: "https://prometheus-community.github.io/helm-charts"
   bitnami: "https://charts.bitnami.com/bitnami"
   gitlab: "https://charts.gitlab.io"
@@ -28,6 +30,12 @@ apps:
     chart: nfs-subdir-external-provisioner/nfs-subdir-external-provisioner
     version: 4.0.15 
     valuesFile: nfs-external-provisioner/values.yaml
+
+  metrics-server:
+    namespace: kube-system
+    enabled: true
+    chart: metrics-server/metrics-server
+    version: 3.8.0
 
   prometheus:
     namespace: monitoring
