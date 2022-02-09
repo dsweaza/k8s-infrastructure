@@ -13,6 +13,7 @@ namespaces:
   metallb:
   ingress-controller:
   kube-system:
+  gitlab:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
@@ -52,7 +53,7 @@ apps:
   
   gitlab-runner:
     #https://docs.gitlab.com/runner/install/kubernetes.html
-    namespace: default
+    namespace: gitlab
     enabled: true 
     chart: gitlab/gitlab-runner
     version: 0.37.2 
