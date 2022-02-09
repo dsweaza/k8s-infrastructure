@@ -67,4 +67,5 @@ apps:
     enabled: true
     chart: nginx-stable/nginx-ingress
     version: 0.12.0
+    valuesFile: nginx-ingress-controller/values.yaml
     
