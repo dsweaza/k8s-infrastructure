@@ -1,0 +1,12 @@
+global:
+  storageClass: nfs-client
+
+clusterDomain: k8s.dylanlab.xyz
+fullnameOverride: mariadb-galera-01
+replicaCount: 3
+
+startupProbe:
+  enabled: true
+  
+metrics:
+  enabled: true
