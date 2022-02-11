@@ -1,2 +1,7 @@
+clusterDomain: k8s.dylanlab.xyz
+
+global:
+  storageClass: nfs-client
+
 metrics:
   enabled: true
