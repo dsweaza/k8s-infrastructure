@@ -1,4 +1,4 @@
-context: k8s.dylanlab.xyz # defaults to "default" if not provided
+context: cluster.k8s.dylanlab.xyz # defaults to "default" if not provided
 
 metadata:
   org: "dylanlab.xyz"
