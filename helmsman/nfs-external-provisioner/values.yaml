@@ -3,4 +3,4 @@ nfs:
   path: /mnt/Small/k8s-storage
 
 storageClass:
-  default: true
+  defaultClass: true

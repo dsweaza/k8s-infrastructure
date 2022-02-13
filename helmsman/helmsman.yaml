@@ -15,6 +15,7 @@ namespaces:
   kube-system:
   gitlab:
   keycloak:
+  cert-manager:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
@@ -24,6 +25,7 @@ helmRepos:
   gitlab: "https://charts.gitlab.io"
   metallb: "https://metallb.github.io/metallb"
   nginx-stable: "https://helm.nginx.com/stable"
+  jetstack: "https://charts.jetstack.io"
 
 apps:
   nfs-external-provisioner:
@@ -86,4 +88,13 @@ apps:
     chart: bitnami/keycloak
     version: 6.1.4
     valuesFile: keycloak/values.yaml
-    
+    set:
+      postgresql.postgresqlPassword: $HELMCHART_POSTGRESQL_PASSWORD
+      auth.adminPassword: $HELMCHART_KEYCLOAK_PASSWORD
+
+  cert-manager:
+    namespace: cert-manager
+    enabled: true
+    chart: jetstack/cert-manager
+    version: 1.7.1
+    valuesFile: cert-manager/values.yaml
