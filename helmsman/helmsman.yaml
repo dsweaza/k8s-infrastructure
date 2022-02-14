@@ -16,6 +16,7 @@ namespaces:
   gitlab:
   keycloak:
   cert-manager:
+  hashicorp:
     
 helmRepos:
   nfs-subdir-external-provisioner: "https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner"
@@ -26,6 +27,7 @@ helmRepos:
   metallb: "https://metallb.github.io/metallb"
   nginx-stable: "https://helm.nginx.com/stable"
   jetstack: "https://charts.jetstack.io"
+  hashicorp: "https://helm.releases.hashicorp.com"
 
 apps:
   nfs-external-provisioner:
@@ -98,3 +100,16 @@ apps:
     chart: jetstack/cert-manager
     version: 1.7.1
     valuesFile: cert-manager/values.yaml
+
+  consul:
+    namespace: hashicorp
+    enabled: true
+    chart: hashicorp/consul
+    version: 0.35.0
+
+  vault:
+    namespace: hashicorp
+    enabled: true
+    chart: hashicorp/vault
+    version: 0.19.0
+    valuesFile: vault/values.yaml
